@@ -48,17 +48,17 @@ fi
 extract_file_id() {
   local input=$1
   
-  # If it's already just an ID (alphanumeric), return it
-  if [[ "${input}" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+  # If it's already just an ID (alphanumeric, at least 25 chars), return it
+  if [[ "${input}" =~ ^[a-zA-Z0-9_-]{25,}$ ]]; then
     echo "${input}"
     return 0
   fi
   
   # Extract from various URL patterns
-  if [[ "${input}" =~ /d/([a-zA-Z0-9_-]+) ]]; then
+  if [[ "${input}" =~ /d/([a-zA-Z0-9_-]{25,}) ]]; then
     echo "${BASH_REMATCH[1]}"
     return 0
-  elif [[ "${input}" =~ id=([a-zA-Z0-9_-]+) ]]; then
+  elif [[ "${input}" =~ id=([a-zA-Z0-9_-]{25,}) ]]; then
     echo "${BASH_REMATCH[1]}"
     return 0
   fi
