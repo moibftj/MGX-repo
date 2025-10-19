@@ -27,18 +27,41 @@ To learn more about Next.js, take a look at the following resources:
 
 ## Scripts
 
-scripts/secure_create_repo.sh
-- Creates a GitHub repository for the current project and pushes the current git history.
-- Usage: ./scripts/secure_create_repo.sh [repo-name]
-- The script prompts for your GitHub username and Personal Access Token (the token is not saved).
+### secure_create_repo.sh
+Creates a GitHub repository for the current project and pushes the current git history.
 
-Example:
-
+**Usage:**
 ```bash
-./scripts/secure_create_repo.sh MGX-repo
+./scripts/secure_create_repo.sh [repo-name]
 ```
 
-Note: Ensure your token has the `repo` scope to create and push repositories.
+The script prompts for your GitHub username and Personal Access Token (the token is not saved).
+
+**Note:** Ensure your token has the `repo` scope to create and push repositories.
+
+### download_gdrive_files.sh
+Downloads files from Google Drive links and saves them to the repository.
+
+**Usage:**
+```bash
+./scripts/download_gdrive_files.sh <google-drive-url-or-file-id> [output-path]
+```
+
+**Examples:**
+```bash
+# Using full URL
+./scripts/download_gdrive_files.sh "https://drive.google.com/file/d/FILE_ID/view" ./downloads
+
+# Using just the file ID
+./scripts/download_gdrive_files.sh "FILE_ID" ./data
+```
+
+**Requirements:**
+- Python 3 with pip
+- Internet connection
+- Google Drive file must be publicly accessible
+
+For detailed instructions on uploading files from Google Drive, see [GDRIVE_UPLOAD_INSTRUCTIONS.md](./GDRIVE_UPLOAD_INSTRUCTIONS.md).
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
