@@ -86,6 +86,9 @@ fi
 # Create output directory if it doesn't exist
 mkdir -p "${OUTPUT_PATH}"
 
+# Convert to absolute path for safety
+OUTPUT_PATH=$(cd "${OUTPUT_PATH}" && pwd)
+
 # Download the file
 echo "Downloading file from Google Drive..."
 cd "${OUTPUT_PATH}"
@@ -99,7 +102,7 @@ if gdown "https://drive.google.com/uc?id=${FILE_ID}"; then
   echo "Files downloaded to: ${OUTPUT_PATH}"
   echo
   echo "To add these files to your git repository:"
-  echo "  1. git add ${OUTPUT_PATH}"
+  echo "  1. git add \"${OUTPUT_PATH}\""
   echo "  2. git commit -m 'Add files from Google Drive'"
   echo "  3. git push"
   echo
