@@ -1,0 +1,22 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/guiyomh/features/vim:0": {},
+		"ghcr.io/jungaretti/features/vim:1": {},
+		"ghcr.io/enricosecondulfo/devcontainer-features/volta:1": {},
+		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
+		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/golang-wasi:0": {},
+		"ghcr.io/devcontainers-community/npm-features/typescript:1": {},
+		"ghcr.io/lee-orr/rusty-dev-containers/wasm-bindgen-cli:0": {},
+		"ghcr.io/lee-orr/rusty-dev-containers/wasm-server-runner:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-aws-cli:0": {},
+		"ghcr.io/audacioustux/devcontainers/wasm-toolchain:1": {},
+		"ghcr.io/nikobockerman/devcontainer-features/yarn-persistent-cache:1": {},
+		"ghcr.io/devcontainers-extra/features/ts-node:1": {},
+		"ghcr.io/devcontainers-extra/features/typescript:2": {},
+		"ghcr.io/devcontainers-extra/features/vscode-cli:1": {},
+		"ghcr.io/devcontainers-extra/features/vscode-server:1": {},
+		"ghcr.io/devcontainers-extra/features/vue-cli:2": {},
+		"ghcr.io/bascodes/devcontainer-features/webinstall.dev:1": {}
+	}
+}
