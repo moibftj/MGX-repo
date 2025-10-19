@@ -1,0 +1,56 @@
+$ pnpm run lint
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+$ pnpm run build
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1688 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.99 kB │ gzip:   0.46 kB
+dist/assets/index-LPfYDkp7.css   71.19 kB │ gzip:  12.03 kB
+dist/assets/index-B5PM9174.js   397.36 kB │ gzip: 121.43 kB
+✓ built in 5.41s
+$ pnpm run lint
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+$ pnpm run build
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1688 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.99 kB │ gzip:   0.46 kB
+dist/assets/index-BWLqV-Sl.css   72.58 kB │ gzip:  12.25 kB
+dist/assets/index-CmJGrjop.js   402.19 kB │ gzip: 122.24 kB
+✓ built in 5.81s
+$ pnpm run lint
+
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+/workspace/shadcn-ui/src/lib/supabase.ts
+  129:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  521:96  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 3 problems (3 errors, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.

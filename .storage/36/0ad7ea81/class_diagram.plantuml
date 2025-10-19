@@ -1,0 +1,136 @@
+@startuml LegalLetterAI_ClassDiagram
+!theme aws-orange
+
+interface IUserService {
+  +createUser(userData: CreateUserRequest): Promise<User>
+  +authenticateUser(credentials: LoginRequest): Promise<AuthResponse>
+  +updateUserProfile(userId: string, updates: UserUpdate): Promise<User>
+  +deleteUser(userId: string): Promise<void>
+  +getUserById(userId: string): Promise<User>
+  +getUsersByRole(role: UserRole): Promise<User[]>
+}
+
+interface ILetterService {
+  +generateLetter(request: LetterGenerationRequest): Promise<Letter>
+  +getUserLetters(userId: string): Promise<Letter[]>
+  +updateLetterStatus(letterId: string, status: LetterStatus): Promise<Letter>
+  +downloadLetter(letterId: string): Promise<Blob>
+  +deleteLetter(letterId: string): Promise<void>
+}
+
+interface ISubscriptionService {
+  +createSubscription(userId: string, planId: string, couponCode?: string): Promise<Subscription>
+  +updateSubscription(subscriptionId: string, updates: SubscriptionUpdate): Promise<Subscription>
+  +cancelSubscription(subscriptionId: string): Promise<void>
+  +getSubscriptionByUserId(userId: string): Promise<Subscription>
+  +validateCouponCode(code: string): Promise<CouponValidation>
+}
+
+interface IEmployeeService {
+  +generateCouponCode(employeeId: string): Promise<string>
+  +trackReferral(couponCode: string, subscriptionId: string): Promise<Referral>
+  +calculateCommission(employeeId: string, period: DateRange): Promise<Commission>
+  +getEmployeeMetrics(employeeId: string): Promise<EmployeeMetrics>
+  +updateEmployeeEarnings(employeeId: string, amount: number): Promise<void>
+}
+
+interface IAIService {
+  +generateLegalContent(prompt: LegalPrompt): Promise<string>
+  +validateLegalContent(content: string): Promise<ValidationResult>
+  +formatDocument(content: string, template: DocumentTemplate): Promise<string>
+  +extractKeyTerms(content: string): Promise<string[]>
+}
+
+class User {
+  +id: string
+  +email: string
+  +fullName: string
+  +role: UserRole
+  +subscriptionId?: string
+  +couponCode?: string
+  +referrals: number
+  +earnings: number
+  +createdAt: Date
+  +updatedAt: Date
+  +isActive: boolean
+  +lastLoginAt?: Date
+}
+
+class Letter {
+  +id: string
+  +userId: string
+  +senderName: string
+  +senderAddress: string
+  +recipientName: string
+  +recipientAddress: string
+  +matter: string
+  +resolution: string
+  +content: string
+  +status: LetterStatus
+  +generatedAt: Date
+  +completedAt?: Date
+  +downloadCount: number
+  +metadata: LetterMetadata
+}
+
+class Subscription {
+  +id: string
+  +userId: string
+  +planId: string
+  +status: SubscriptionStatus
+  +currentPeriodStart: Date
+  +currentPeriodEnd: Date
+  +cancelAtPeriodEnd: boolean
+  +stripeSubscriptionId: string
+  +couponCode?: string
+  +discountAmount: number
+  +totalAmount: number
+  +createdAt: Date
+}
+
+class Employee {
+  +id: string
+  +userId: string
+  +couponCode: string
+  +totalReferrals: number
+  +totalEarnings: number
+  +commissionRate: number
+  +isActive: boolean
+  +joinedAt: Date
+  +lastPayoutAt?: Date
+}
+
+enum UserRole {
+  USER
+  EMPLOYEE
+  ADMIN
+}
+
+enum LetterStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  ARCHIVED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  UNPAID
+  TRIALING
+}
+
+IUserService ..> User
+ILetterService ..> Letter
+ISubscriptionService ..> Subscription
+IEmployeeService ..> Employee
+IAIService ..> Letter
+
+User ||--o{ Letter : "generates"
+User ||--o| Subscription : "has"
+User ||--o| Employee : "can be"
+Employee ||--o{ Subscription : "refers to"
+
+@enduml

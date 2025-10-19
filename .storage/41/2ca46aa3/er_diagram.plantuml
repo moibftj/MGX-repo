@@ -1,0 +1,102 @@
+@startuml LegalLetterAI_ERDiagram
+!theme aws-orange
+
+entity "users" as users {
+  * id : uuid <<PK>>
+  --
+  * email : varchar(255) <<UK>>
+  * full_name : varchar(255)
+  * password_hash : varchar(255)
+  * role : user_role_enum
+  * is_active : boolean
+  * email_verified : boolean
+  * created_at : timestamp
+  * updated_at : timestamp
+  * last_login_at : timestamp
+  --
+  subscription_id : uuid <<FK>>
+}
+
+entity "subscriptions" as subs {
+  * id : uuid <<PK>>
+  --
+  * user_id : uuid <<FK>>
+  * plan_id : varchar(50)
+  * status : subscription_status_enum
+  * current_period_start : timestamp
+  * current_period_end : timestamp
+  * cancel_at_period_end : boolean
+  * stripe_subscription_id : varchar(255)
+  * coupon_code : varchar(50)
+  * discount_amount : decimal(10,2)
+  * total_amount : decimal(10,2)
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "letters" as letters {
+  * id : uuid <<PK>>
+  --
+  * user_id : uuid <<FK>>
+  * sender_name : varchar(255)
+  * sender_address : text
+  * recipient_name : varchar(255)
+  * recipient_address : text
+  * matter : varchar(500)
+  * resolution : text
+  * content : text
+  * status : letter_status_enum
+  * file_url : varchar(500)
+  * generated_at : timestamp
+  * completed_at : timestamp
+  * download_count : integer
+  * metadata : jsonb
+}
+
+entity "employees" as employees {
+  * id : uuid <<PK>>
+  --
+  * user_id : uuid <<FK>>
+  * coupon_code : varchar(50) <<UK>>
+  * total_referrals : integer
+  * total_earnings : decimal(10,2)
+  * commission_rate : decimal(5,4)
+  * is_active : boolean
+  * joined_at : timestamp
+  * last_payout_at : timestamp
+}
+
+entity "referrals" as referrals {
+  * id : uuid <<PK>>
+  --
+  * employee_id : uuid <<FK>>
+  * subscription_id : uuid <<FK>>
+  * coupon_code : varchar(50)
+  * commission_amount : decimal(10,2)
+  * status : referral_status_enum
+  * created_at : timestamp
+  * paid_at : timestamp
+}
+
+entity "audit_logs" as audit {
+  * id : uuid <<PK>>
+  --
+  * user_id : uuid <<FK>>
+  * action : varchar(100)
+  * resource_type : varchar(50)
+  * resource_id : uuid
+  * old_values : jsonb
+  * new_values : jsonb
+  * ip_address : inet
+  * user_agent : text
+  * created_at : timestamp
+}
+
+users ||--o| subs : "user_id"
+users ||--o{ letters : "user_id"
+users ||--o| employees : "user_id"
+employees ||--o{ referrals : "employee_id"
+subs ||--o| referrals : "subscription_id"
+users ||--o{ audit : "user_id"
+
+@enduml

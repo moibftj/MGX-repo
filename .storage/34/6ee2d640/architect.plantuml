@@ -1,0 +1,72 @@
+@startuml LegalLetterAI_Architecture
+!theme aws-orange
+
+package "Frontend Layer" {
+  [React SPA] as frontend
+  [State Management] as state
+  [UI Components] as ui
+  [Authentication] as auth
+}
+
+package "API Gateway" {
+  [Supabase Edge Functions] as gateway
+  [Rate Limiter] as limiter
+  [Request Validator] as validator
+}
+
+package "Business Logic" {
+  [User Service] as userSvc
+  [Letter Service] as letterSvc
+  [Subscription Service] as subSvc
+  [Employee Service] as empSvc
+  [AI Service] as aiSvc
+}
+
+package "Data Layer" {
+  [PostgreSQL] as db
+  [Redis Cache] as cache
+  [File Storage] as storage
+}
+
+package "External Services" {
+  [Google Gemini AI] as gemini
+  [OpenAI GPT-4] as openai
+  [Stripe Payments] as stripe
+  [SendGrid Email] as email
+}
+
+package "Infrastructure" {
+  [CDN] as cdn
+  [Load Balancer] as lb
+  [Monitoring] as monitor
+}
+
+frontend --> gateway
+gateway --> limiter
+limiter --> validator
+validator --> userSvc
+validator --> letterSvc
+validator --> subSvc
+validator --> empSvc
+
+letterSvc --> aiSvc
+aiSvc --> gemini
+aiSvc --> openai
+
+userSvc --> db
+letterSvc --> db
+subSvc --> db
+empSvc --> db
+
+letterSvc --> cache
+userSvc --> cache
+
+letterSvc --> storage
+subSvc --> stripe
+userSvc --> email
+
+frontend --> cdn
+cdn --> lb
+lb --> monitor
+
+@enduml

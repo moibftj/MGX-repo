@@ -1,0 +1,52 @@
+$ cd /workspace/shadcn-ui && pnpm run lint
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+/workspace/shadcn-ui/src/lib/enhanced-supabase.ts
+  116:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  128:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  156:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  598:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  603:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/workspace/shadcn-ui/src/lib/supabase.ts
+  129:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  521:96  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 9 problems (9 errors, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+$ cd /workspace/shadcn-ui && pnpm run build
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1689 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.99 kB │ gzip:   0.46 kB
+dist/assets/index-Dwxoapzl.css   73.69 kB │ gzip:  12.38 kB
+dist/assets/index-By-pT6c3.js   413.04 kB │ gzip: 125.70 kB
+✓ built in 5.05s
+$ cd /workspace/shadcn-ui && pnpm run build
+
+
+> shadcnui@ build /workspace/shadcn-ui
+> vite build
+
+vite v5.4.19 building for production...
+transforming...
+✓ 1689 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.99 kB │ gzip:   0.46 kB
+dist/assets/index-Ye_FOjFC.css   73.62 kB │ gzip:  12.36 kB
+dist/assets/index-CTXLnsOz.js   407.45 kB │ gzip: 123.84 kB
+✓ built in 4.46s

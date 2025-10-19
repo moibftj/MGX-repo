@@ -1,0 +1,81 @@
+@startuml LegalLetterAI_SequenceFlow
+!theme aws-orange
+
+actor User
+participant "React Frontend" as UI
+participant "Supabase Auth" as Auth
+participant "Edge Functions" as API
+participant "Letter Service" as LS
+participant "AI Service" as AI
+participant "Database" as DB
+participant "File Storage" as FS
+
+== User Authentication ==
+User -> UI: Login Request
+UI -> Auth: authenticate(credentials)
+Auth -> DB: Validate user credentials
+DB --> Auth: User data + JWT
+Auth --> UI: Authentication token
+UI --> User: Dashboard access
+
+== Letter Generation Flow ==
+User -> UI: Fill letter form + Submit
+UI -> API: POST /api/letters/generate
+    note right
+        Input: {
+            "senderName": "string",
+            "senderAddress": "string",
+            "recipientName": "string", 
+            "recipientAddress": "string",
+            "matter": "string",
+            "resolution": "string"
+        }
+    end note
+
+API -> LS: createLetter(letterData)
+LS -> DB: INSERT letter record
+DB --> LS: Letter ID + status: PENDING
+LS --> API: Letter created
+    note right
+        Output: {
+            "letterId": "uuid",
+            "status": "PENDING",
+            "estimatedCompletion": "timestamp"
+        }
+    end note
+
+API --> UI: Letter creation confirmed
+UI --> User: Show progress modal
+
+== AI Processing (Async) ==
+LS -> AI: generateLegalContent(prompt)
+AI -> AI: Format legal prompt
+AI -> "Google Gemini": Generate content
+"Google Gemini" --> AI: Generated text
+AI -> AI: Validate + format content
+AI --> LS: Formatted legal letter
+
+LS -> DB: UPDATE letter SET content, status=COMPLETED
+LS -> FS: Store letter PDF
+FS --> LS: File URL
+LS -> DB: UPDATE letter SET fileUrl
+DB --> LS: Success
+
+== Real-time Updates ==
+DB -> UI: WebSocket notification
+UI -> UI: Update progress (Step 4/4)
+UI --> User: Letter ready notification
+
+== Download Flow ==
+User -> UI: Click download
+UI -> API: GET /api/letters/{id}/download
+API -> LS: downloadLetter(letterId)
+LS -> DB: Verify user access
+DB --> LS: Access granted
+LS -> FS: Retrieve file
+FS --> LS: File blob
+LS --> API: File stream
+API --> UI: PDF download
+UI --> User: File downloaded
+
+@enduml

@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Blue Gradient Theme */
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #60a5fa 25%, #93c5fd  50%, #dbeafe 75%, #eff6ff 100%);
+  --primary-gradient-reverse: linear-gradient(315deg, #3b82f6 0%, #60a5fa 25%, #93c5fd 50%, #dbeafe 75%, #eff6ff 100%);
+  --accent-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+  --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  --glass-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.05) 100%);
+  
+  /* Shiny Button Effects */
+  --shine-gradient: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  --glow-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  --glow-shadow-hover: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--primary-gradient);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Shiny Button Base Styles */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent-gradient);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--glow-shadow);
+}
+
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--shine-gradient);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-shine:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-shadow-hover);
+}
+
+.btn-shine:hover::before {
+  left: 100%;
+}
+
+.btn-shine:active {
+  transform: translateY(0);
+}
+
+/* Glass Morphism Effect */
+.glass-card {
+  background: var(--glass-gradient);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slide In Animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Fade In Scale Animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s ease-out;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gradient);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+}
+
+/* Loading Spinner */
+.spinner {
+  border: 3px solid rgba(59, 130, 246, 0.3);
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--accent-gradient);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+/* Icon Bounce */
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-icon-bounce {
+  animation: iconBounce 0.6s ease-in-out;
+}
+
+/* Success Ripple */
+@keyframes successRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-success-ripple {
+  animation: successRipple 0.6s ease-out;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
+}
+
+/* Button Variants */
+.btn-primary {
+  @apply btn-shine px-6 py-3 rounded-lg font-semibold text-white;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-lg font-semibold border-2 border-blue-300 text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300 hover:border-blue-400 hover:shadow-lg;
+}
+
+.btn-ghost {
+  @apply px-6 py-3 rounded-lg font-semibold text-blue-600 hover:bg-blue-50 transition-all duration-300;
+}
+
+/* Form Elements */
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg border border-blue-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all duration-300 bg-white/80 backdrop-blur-sm;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Badge Styles */
+.badge-primary {
+  @apply px-3 py-1 rounded-full text-sm font-medium;
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.badge-secondary {
+  @apply px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700 border border-blue-200;
+}
+
+/* Progress Bar */
+.progress-bar {
+  background: var(--light-gradient);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+.progress-fill {
+  background: var(--accent-gradient);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+  animation: shimmer 2s infinite;
+}
+
+/* Tab Styles */
+.tab-active {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: var(--glow-shadow);
+}
+
+.tab-inactive {
+  @apply text-blue-600 hover:bg-blue-50 transition-all duration-300;
+}
+
+/* Alert Styles */
+.alert-success {
+  @apply bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.alert-error {
+  @apply bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .btn-shine {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 197, 253, 0.1) 100%);
+  }
+  
+  .input-field {
+    @apply bg-white/10 text-white border-blue-400/30;
+  }
+  
+  .glass-card {
+    background: var(--glass-gradient);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+}
