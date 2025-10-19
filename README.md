@@ -24,8 +24,21 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+## Scripts
+
+scripts/secure_create_repo.sh
+- Creates a GitHub repository for the current project and pushes the current git history.
+- Usage: ./scripts/secure_create_repo.sh [repo-name]
+- The script prompts for your GitHub username and Personal Access Token (the token is not saved).
+
+Example:
+
+```bash
+./scripts/secure_create_repo.sh MGX-repo
+```
+
+Note: Ensure your token has the `repo` scope to create and push repositories.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
