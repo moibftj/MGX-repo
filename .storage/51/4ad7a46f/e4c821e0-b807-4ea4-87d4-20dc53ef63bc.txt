@@ -1,0 +1,6 @@
+$ cd /workspace/shadcn-ui && ps aux | grep vite
+root       458  0.0  0.0   2888   964 ?        S    19:04   0:00 sh -c vite
+root       459  5.4  0.0 23641556 102936 ?     Sl   19:04   0:01 node /workspace/shadcn-ui/node_modules/.bin/../vite/bin/vite.js
+root       471  0.0  0.0   2888   952 ?        S    19:04   0:00 sh -c vite
+root       472  5.5  0.0 23641700 103360 ?     Sl   19:04   0:01 node /workspace/shadcn-ui/node_modules/.bin/../vite/bin/vite.js
+root       606  0.0  0.0   3840  2036 ?        R    19:04   0:00 grep vite

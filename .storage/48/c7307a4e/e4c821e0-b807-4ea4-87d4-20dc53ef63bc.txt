@@ -1,0 +1,22 @@
+$ pnpm run lint
+
+> shadcnui@ lint /workspace/shadcn-ui
+> eslint --quiet ./src
+
+
+/workspace/shadcn-ui/src/lib/enhanced-supabase.ts
+  116:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  128:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  156:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  598:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  603:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/workspace/shadcn-ui/src/lib/supabase.ts
+  129:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  521:96  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 9 problems (9 errors, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.

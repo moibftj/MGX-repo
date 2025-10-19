@@ -1,0 +1,65 @@
+$ find /workspace -type f -name "*.tsx" -o -name "*.ts" -o -name "*.json" -o -name "*.md" | head -20
+/workspace/.MGXEnv.json
+/workspace/.MGXTools/ff843ba9090a4361a87a8770c48d0538.json
+/workspace/.timeline.json
+/workspace/.wiki.md
+/workspace/shadcn-ui/README.md
+/workspace/shadcn-ui/components.json
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-accordion@1.2.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-accordion/dist/index.d.ts
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-accordion@1.2.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-accordion/package.json
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-accordion@1.2.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-accordion/README.md
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+primitive@1.1.2/node_modules/@radix-ui/primitive/dist/index.d.ts
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+primitive@1.1.2/node_modules/@radix-ui/primitive/README.md
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+primitive@1.1.2/node_modules/@radix-ui/primitive/package.json
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-collapsible@1.1.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-collapsible/dist/index.d.ts
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-collapsible@1.1.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-collapsible/package.json
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-collapsible@1.1.11_@types+react-dom@19.1.8_@types+react@19.1.11_react-dom@19.1.1_react@19.1.1/node_modules/@radix-ui/react-collapsible/README.md
+/workspace/shadcn-ui/node_modules/.pnpm/csstype@3.1.3/node_modules/csstype/package.json
+/workspace/shadcn-ui/node_modules/.pnpm/csstype@3.1.3/node_modules/csstype/README.md
+/workspace/shadcn-ui/node_modules/.pnpm/csstype@3.1.3/node_modules/csstype/index.d.ts
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-compose-refs@1.1.2_@types+react@19.1.11_react@19.1.1/node_modules/@radix-ui/react-compose-refs/dist/index.d.ts
+/workspace/shadcn-ui/node_modules/.pnpm/@radix-ui+react-compose-refs@1.1.2_@types+react@19.1.11_react@19.1.1/node_modules/@radix-ui/react-compose-refs/README.md
+$ cd /workspace/shadcn-ui && tree -I 'node_modules|dist|.git' -L 3
+
+.
+├── README.md
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.js
+├── public
+│   ├── favicon.svg
+│   └── robots.txt
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── components
+│   │   ├── LetterGenerator.tsx
+│   │   ├── SubscriptionPlans.tsx
+│   │   └── ui
+│   ├── hooks
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
+│   ├── index.css
+│   ├── lib
+│   │   ├── supabase.ts
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── AdminDashboard.tsx
+│   │   ├── Auth.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Index.tsx
+│   │   └── NotFound.tsx
+│   └── vite-env.d.ts
+├── tailwind.config.ts
+├── template_config.json
+├── todo.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+7 directories, 32 files
